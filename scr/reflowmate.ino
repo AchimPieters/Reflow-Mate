@@ -275,23 +275,39 @@ void loop() {
 //********************* PREHEAT *********************
         if (state_now == 1) {
                 regulate_temp(temperature_now, temperature_next);
+
                 percentage = int((float(temperature_now) / float(temperature_next)) * 100.00);
+                if (percentage >= 100) {
+                        time_count = int((current_time + PREHEAT_TIME * 1000 - millis()) / 1000);
+                        if (time_count <= 0) {
+                                state_now = 2;
+                                current_time = millis();
+                                percentage = 0;
+                                temperature_next = temperature_rotary_encoder;
+                        }
+                }
+                delay(30);
         }
 //********************* REFLOW *********************
         else if (state_now == 2) {
                 regulate_temp(temperature_now, temperature_next);
+
                 percentage = int((float(temperature_now) / float(temperature_next)) * 100.00);
                 if (percentage >= 100) {
-                        state_now = 3;
-                        meter = millis();
-                        percentage = 0;
-                        temperature_next = 0;
+                        time_count = int((current_time + REFLOW_TIME * 1000 - millis()) / 1000);
+                        if (time_count <= 0) {
+                                state_now = 3;
+                                current_time  = millis();
+                                percentage = 0;
+                                temperature_next = 0;
+                        }
                 }
                 delay(30);
         }
 //********************* COOLING *********************
         else if (state_now == 3) {
                 digitalWrite(solidstate, LOW);
+
                 time_count = int((current_time + COOLDOWN_TIME * 1000 - millis()) / 1000);
                 if (time_count <= 0) {
                         state_now = 0;
