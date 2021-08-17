@@ -1,0 +1,15 @@
+[submodule "Adafruit-GFX-Library"]
+	path = Adafruit-GFX-Library
+	url = https://github.com/adafruit/Adafruit-GFX-Library
+[submodule "Adafruit_SSD1306"]
+	path = Adafruit_SSD1306
+	url = https://github.com/adafruit/Adafruit_SSD1306
+[submodule "Adafruit_BusIO"]
+	path = Adafruit_BusIO
+	url = https://github.com/adafruit/Adafruit_BusIO
+[submodule "ai-esp32-rotary-encoder"]
+	path = ai-esp32-rotary-encoder
+	url = https://github.com/igorantolic/ai-esp32-rotary-encoder
+[submodule "Adafruit-MAX31855-library"]
+	path = Adafruit-MAX31855-library
+	url = https://github.com/adafruit/Adafruit-MAX31855-library
